@@ -1,0 +1,54 @@
+name: smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    env:
+      PYTHONUTF8: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Compilar todos los módulos
+        run: python -m compileall -q .
+
+      - name: Smoke test headless
+        run: python tests/smoke_test.py
+
+      - name: Torneo 3v3 de humo
+        run: python simulate_ai_5.py --n 1 --size 3 --cores 1
+
+      - name: Benchmark L4 vs L5 (smoke de una batalla)
+        run: python benchmark_l4_vs_l5.py --n 1 --cores 1

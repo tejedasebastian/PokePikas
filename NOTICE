@@ -1,0 +1,49 @@
+PokePikas — Aviso de derechos de terceros
+==========================================
+
+Copyright (c) 2026 Sebastian Tejeda (tejedasebastian)
+
+1. Código fuente
+----------------
+El código fuente original de este repositorio (motor de combate, agentes de
+IA, simulaciones, interfaz y scripts) se distribuye bajo la licencia MIT.
+Consulta el archivo LICENSE.
+
+2. Assets y propiedad intelectual de Pokémon
+-------------------------------------------
+Los nombres, personajes, sprites, retratos, ilustraciones, fondos, música y
+efectos de sonido de Pokémon incluidos en assets/ NO están cubiertos por la
+licencia MIT y NO se relicencian en este repositorio. Son propiedad de sus
+respectivos titulares, incluyendo Nintendo, Game Freak, Creatures Inc. y The
+Pokémon Company. Todos los derechos reservados.
+
+Estos assets se incluyen únicamente con fines educativos, de demostración y
+de investigación personal, sin ánimo de lucro ni de infracción. No se concede
+al usuario ningún derecho sobre ellos por el hecho de descargar, clonar o
+ejecutar este proyecto. Cualquier uso, redistribución o explotación requiere
+la autorización de los titulares correspondientes.
+
+3. Datos
+--------
+Los archivos data/pokemon_pool.json y data/moves_pool.json son snapshots de
+datos derivados de PokéAPI. Los datos de Pokémon y movimientos siguen sujetos
+a los derechos de sus titulares y a los términos de PokéAPI. El código de
+PokéAPI no se incluye en este repositorio.
+
+4. Dependencias
+---------------
+Pygame se usa como dependencia externa y conserva su propia licencia
+(LGPL 2.1 o posterior). No se distribuye una copia modificada de Pygame.
+
+5. Ausencia de afiliación
+-------------------------
+PokePikas es un proyecto personal y no oficial. No está afiliado, patrocinado,
+aprobado ni respaldado por Nintendo, Game Freak, Creatures Inc., The Pokémon
+Company, PokéAPI ni Pygame. Las marcas y nombres se usan únicamente con fines
+descriptivos y educativos.
+
+6. Retirada de contenido
+------------------------
+Si eres titular de derechos y consideras que algún asset no debería estar
+incluido, abre un issue en el repositorio para solicitar su retirada. El
+mantenedor revisará la petición y eliminará el contenido cuando corresponda.

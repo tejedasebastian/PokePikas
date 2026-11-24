@@ -181,13 +181,13 @@ def run_benchmark(n_battles: int = 500, n_cores: int = None) -> None:
     wr_p2 = sum(1 for r in ia5_as_p2 if r[0] == 1) / max(1, len(ia5_as_p2)) * 100
 
     print()
-    print(f'  {'RESULTADO GLOBAL':<30}')
+    print('  RESULTADO GLOBAL')
     print(f'  {"IA5 gana:":<30} {wins_ia5:>5} batallas  ({wr_ia5:.1f}%)')
     print(f'  {"IA4 gana:":<30} {wins_ia4:>5} batallas  ({wr_ia4:.1f}%)')
     print(f'  {"Empates:":<30} {draws:>5} batallas')
     print()
     print(f'  {"Win rate IA5 (sin empates):":<30} {wr_ia5_nodraw:.1f}%')
-    print(f'  {"IC 95% win rate IA5:":<30} [{lo:.1f}%  –  {hi:.1f}%]')
+    print(f'  {"IC 95% win rate IA5:":<30} [{lo:.1f}%  -  {hi:.1f}%]')
     print()
     print(f'  DESGLOSE POR PERSPECTIVA')
     print(f'  {"IA5 como jugador 1:":<30} {wr_p1:.1f}%')
@@ -200,11 +200,11 @@ def run_benchmark(n_battles: int = 500, n_cores: int = None) -> None:
     print()
 
     if lo > 50.0:
-        verdict = '✅ IA5 supera estadísticamente a IA4'
+        verdict = '[OK] IA5 supera estadísticamente a IA4'
     elif hi < 50.0:
-        verdict = '❌ IA4 supera estadísticamente a IA5'
+        verdict = '[KO] IA4 supera estadísticamente a IA5'
     else:
-        verdict = '⚠️  Resultado estadísticamente incierto (empate técnico)'
+        verdict = '[?] Resultado estadísticamente incierto (empate técnico)'
 
     print(f'  VEREDICTO: {verdict}')
     print()

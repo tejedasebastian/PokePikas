@@ -70,10 +70,10 @@ optimización evolutiva y evaluación de estados.
 | Audio | Opcional; el juego continúa si Pygame no puede inicializar el mezclador |
 | Sistema | Windows, Linux o macOS con entorno gráfico para la GUI |
 
-El target es **Python 3.11+** porque el código usa anotaciones modernas
-(`int | None`, `list[...]`) y el benchmark contiene f-strings que no compilan en
-Python 3.10/3.11 con comillas anidadas del mismo tipo. No se recomienda usar
-versiones anteriores.
+El target es **Python 3.11+**: el código usa anotaciones modernas
+(`int | None`, `list[...]`) y 3.11 es el mínimo que se soporta y se prueba en CI.
+El benchmark fue corregido para compilar sin problemas en 3.11. No se recomienda
+usar versiones anteriores.
 
 ### 2.2 Instalación
 
@@ -349,8 +349,8 @@ python -c "from src.ai.genetic_algo import run_genetic_algorithm, GeneticConfig;
   run_genetic_algorithm(cfg)"
 ```
 
-El entrenamiento es **costoso**: el log de la última corrida muestra alrededor de
-13 minutos por generación con 15 núcleos, por lo que una ejecución completa puede
+El entrenamiento es **costoso**: el log de la última corrida muestra entre 11 y 22
+minutos por generación con 15 núcleos, por lo que una ejecución completa puede
 durar horas. El resultado se guarda en `data/ai/level5_weights.json` y el log en
 `data/ai/level5_ga.log` (ignorado por Git).
 
@@ -388,10 +388,10 @@ Las simulaciones paralelizan con `multiprocessing.Pool` y alternan la perspectiv
 P1/P2 en cada batalla para reducir el sesgo de orden de turno. No se incluyen
 resultados agregados en el repositorio: se generan al ejecutar los scripts.
 
-El benchmark L4 vs L5 es caro para muestras grandes (alrededor de 8 segundos por
-batalla 4v4 en un núcleo). La CI ejecuta solo `--n 1` como smoke de ejecución,
-sin pretender significancia estadística; para analizar resultados usa una muestra
-grande:
+El benchmark L4 vs L5 es caro para muestras grandes: cada batalla 4v4 puede
+tardar varios segundos en un núcleo. La CI ejecuta solo `--n 1` como smoke de
+ejecución, sin pretender significancia estadística; para analizar resultados usa
+una muestra grande:
 
 ```bash
 python benchmark_l4_vs_l5.py --n 200 --cores 8
@@ -440,9 +440,9 @@ los workers de `multiprocessing`.
 
 ## 14. Reproducibilidad
 
-- **Semillas deterministas**: `simulate_ai_*.py` fijan `random.seed` con la
-  semilla recibida, de modo que dos ejecuciones con la misma semilla producen los
-  mismos resultados.
+- **Semillas deterministas**: cada batalla de `simulate_ai_*.py` usa el índice de
+  la batalla como semilla (`random.seed(i)`), de modo que dos ejecuciones con los
+  mismos argumentos producen los mismos resultados.
 - **PRNG anclado en AG**: las batallas de fitness usan
   `generation_seed * 100000 + scenario_id * 1000 + battle_idx * 2`.
 - **Datos versionados**: no se necesita PokéAPI ni conexión a internet.

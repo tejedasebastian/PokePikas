@@ -1,3 +1,38 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Bytecode de Python
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Herramientas y metadatos de IDE
+.idea/
+.vscode/
+*.iml
+
+# Artefactos de empaquetado y tests
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Logs y salidas locales
+*.log
+logs/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Variables de entorno locales
+.env
+.env.*
